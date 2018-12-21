@@ -11,7 +11,7 @@ describe('qutil', () => {
     `
   })
 
-  describe('selector string', () => {
+  describe('first argument is a string', () => {
     it('should return an array of matched elements', () => {
       const result = q('.foo')
       const expected = document.querySelectorAll('.foo')
@@ -29,7 +29,7 @@ describe('qutil', () => {
     })
 
     it('should accept a mapper function', () => {
-      const result = q('.baz', element => element.parentNode)
+      const result = q('.baz', element => element.parentElement)
       const expected = document.querySelectorAll('.bar')
 
       expect(result).toEqual([...expected])
@@ -37,13 +37,13 @@ describe('qutil', () => {
 
     it('should accept both context and mapper function', () => {
       const context = document.querySelector('.bar')
-      const result = q('.foo', context, element => element.parentNode)
+      const result = q('.foo', context, element => element.parentElement)
 
       expect(result).toEqual([context])
     })
   })
 
-  describe('selector collection', () => {
+  describe('first argument is a collection', () => {
     it('should return an array of the contained elements', () => {
       const collection = document.querySelectorAll('.foo')
       const result = q(collection)
@@ -54,14 +54,14 @@ describe('qutil', () => {
 
     it('should accept a mapper function', () => {
       const collection = document.querySelectorAll('.baz')
-      const result = q(collection, element => element.parentNode)
+      const result = q(collection, element => element.parentElement)
       const expected = document.querySelectorAll('.bar')
 
       expect(result).toEqual([...expected])
     })
   })
 
-  describe('selector element', () => {
+  describe('first argument is an element', () => {
     it('should return an array with the element', () => {
       const element = document.querySelector('.foo')
       const result = q(element)
@@ -72,7 +72,7 @@ describe('qutil', () => {
 
     it('should accept a mapper function', () => {
       const element = document.querySelectorAll('.baz')
-      const result = q(element, element => element.parentNode)
+      const result = q(element, element => element.parentElement)
       const expected = document.querySelectorAll('.bar')
 
       expect(result).toEqual([...expected])

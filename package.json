@@ -1,8 +1,8 @@
 {
-  "name": "qutil",
-  "version": "0.0.1",
+  "name": "qutility",
+  "version": "0.0.2",
   "main": "lib/index.js",
-  "repository": "https://github.com/m3g4p0p/qutil.git",
+  "repository": "https://github.com/m3g4p0p/qutility.git",
   "author": "m3g4p0p",
   "license": "MIT",
   "scripts": {

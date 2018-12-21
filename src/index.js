@@ -1,4 +1,4 @@
-export default function qutil (selector, context, mapFn) {
+export default function qutility (selector, context, mapFn) {
   const currentContext = (
     context instanceof Document ||
     context instanceof Element
