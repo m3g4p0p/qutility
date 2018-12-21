@@ -52,12 +52,29 @@ describe('qutil', () => {
       expect(Array.isArray(result)).toBe(true)
     })
 
+    it('should accept a context argument', () => {
+      const context = document.querySelector('.bar')
+      const collection = document.querySelectorAll('.foo')
+      const result = q(collection, context)
+      const expected = context.querySelectorAll('.bar > .foo')
+
+      expect(result).toEqual([...expected])
+    })
+
     it('should accept a mapper function', () => {
       const collection = document.querySelectorAll('.baz')
       const result = q(collection, element => element.parentElement)
       const expected = document.querySelectorAll('.bar')
 
       expect(result).toEqual([...expected])
+    })
+
+    it('should accept both context and mapper function', () => {
+      const context = document.querySelector('.bar')
+      const collection = document.querySelectorAll('.foo')
+      const result = q(collection, context, element => element.parentElement)
+
+      expect(result).toEqual([context])
     })
   })
 
@@ -70,12 +87,28 @@ describe('qutil', () => {
       expect(Array.isArray(result)).toBe(true)
     })
 
+    it('should accept a context argument', () => {
+      const context = document.querySelector('.foo')
+      const element = document.querySelector('.baz')
+      const result = q(element, context)
+
+      expect(result).toEqual([])
+    })
+
     it('should accept a mapper function', () => {
-      const element = document.querySelectorAll('.baz')
+      const element = document.querySelector('.baz')
       const result = q(element, element => element.parentElement)
       const expected = document.querySelectorAll('.bar')
 
       expect(result).toEqual([...expected])
+    })
+
+    it('should accept both context and mapper function', () => {
+      const context = document.querySelector('.bar')
+      const element = document.querySelector('.baz')
+      const result = q(element, context, element => element.parentElement)
+
+      expect(result).toEqual([context])
     })
   })
 })

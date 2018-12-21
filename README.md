@@ -17,8 +17,8 @@ import q from 'qutility'
 
 const metaContent = q('meta', document.head, el => el.content).join('\n')
 
-q('.meta-content')
-  .flatMap(el => q('p', el))
+q('section')
+  .flatMap(el => q('.meta-content', el))
   .forEach(el => {
     el.textContent = metaContent
   })
@@ -28,7 +28,8 @@ Please have a look at the [specs](./spec/index.spec.js) for details.
 
 # Todo
 
-- [ ] Accept a context argument for elements and collections as well
+- [x] Accept a context argument for elements and collections as well
+- [ ] Accept a selector string as the context argument
 
 ## License
 
