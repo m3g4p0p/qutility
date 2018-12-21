@@ -1,0 +1,6 @@
+src/
+spec/
+.babelrc
+karma.conf.js
+webpack.config.js
+yarn-error.log

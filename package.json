@@ -1,0 +1,45 @@
+{
+  "name": "qutil",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "repository": "https://github.com/m3g4p0p/qutil.git",
+  "author": "m3g4p0p",
+  "license": "MIT",
+  "scripts": {
+    "test": "yarn karma start --single-run",
+    "build": "yarn test && yarn webpack --env.production",
+    "watch": "concurrently 'yarn karma start' 'yarn webpack --watch'",
+    "prepare": "yarn build"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.52",
+    "@babel/preset-env": "^7.0.0-beta.52",
+    "babel-eslint": "^8.2.5",
+    "babel-loader": "^8.0.0-beta.4",
+    "clean-webpack-plugin": "^0.1.19",
+    "concurrently": "^3.6.0",
+    "husky": "^1.2.1",
+    "jasmine-core": "^3.1.0",
+    "jsdom": "^13.1.0",
+    "karma": "^2.0.4",
+    "karma-jasmine": "^1.1.2",
+    "karma-jsdom-launcher": "^6.1.5",
+    "karma-webpack": "^3.0.0",
+    "standard": "^11.0.1",
+    "standard-loader": "^6.0.1",
+    "webpack": "^4.15.0",
+    "webpack-cli": "^3.0.8"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "jasmine": true
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn build"
+    }
+  }
+}
