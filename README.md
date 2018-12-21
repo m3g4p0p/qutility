@@ -29,7 +29,7 @@ Please have a look at the [specs](./spec/index.spec.js) for details.
 # Todo
 
 - [x] Accept a context argument for elements and collections as well
-- [ ] Accept a selector string as the context argument
+- [x] Accept a selector string as the context argument
 
 ## License
 

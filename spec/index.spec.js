@@ -11,7 +11,7 @@ describe('qutil', () => {
     `
   })
 
-  describe('first argument is a string', () => {
+  describe('first argument is a selector string', () => {
     it('should return an array of matched elements', () => {
       const result = q('.foo')
       const expected = document.querySelectorAll('.foo')
@@ -56,7 +56,7 @@ describe('qutil', () => {
       const context = document.querySelector('.bar')
       const collection = document.querySelectorAll('.foo')
       const result = q(collection, context)
-      const expected = context.querySelectorAll('.bar > .foo')
+      const expected = context.querySelectorAll('.foo')
 
       expect(result).toEqual([...expected])
     })
@@ -109,6 +109,16 @@ describe('qutil', () => {
       const result = q(element, context, element => element.parentElement)
 
       expect(result).toEqual([context])
+    })
+  })
+
+  describe('context is a selector string', () => {
+    it('should query the document for the context', () => {
+      const context = document.querySelector('.bar')
+      const result = q('.foo', '.bar')
+      const expected = context.querySelectorAll('.foo')
+
+      expect(result).toEqual([...expected])
     })
   })
 })

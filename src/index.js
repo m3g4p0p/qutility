@@ -4,11 +4,17 @@ const isDescendant = ({ parentNode }, ancestor) => parentNode && (
 )
 
 const identity = x => x
+const defaultContext = document
 
 export default function qutility (selector, context, mapFn) {
-  const isContextProvided = context instanceof Node
   const isSelectorString = typeof selector === 'string'
-  const currentContext = isContextProvided ? context : document
+
+  const currentContext = context instanceof Node
+    ? context
+    : typeof context === 'string'
+      ? defaultContext.querySelector(context)
+      : defaultContext
+
   const currentMapFn = typeof context === 'function' ? context : mapFn
 
   const collection = isSelectorString
@@ -19,7 +25,7 @@ export default function qutility (selector, context, mapFn) {
       Array.isArray(selector)
     ) ? selector : [selector]
 
-  return isSelectorString || !isContextProvided
+  return isSelectorString || currentContext === defaultContext
     ? Array.from(collection, currentMapFn)
     : Array.from(collection)
       .filter(element => isDescendant(element, currentContext))
